@@ -1,7 +1,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.core.validators import MinValueValidator
 
 class Disco(models.Model):
 
@@ -19,10 +19,13 @@ class Disco(models.Model):
 
     preco = models.DecimalField(
         max_digits=8,
-        decimal_places=2
+        decimal_places=2,
+        validators=[MinValueValidator(0.01)]
     )
 
-    estoque = models.IntegerField()
+    estoque = models.IntegerField(
+        validators=[MinValueValidator(0)]
+    )
 
     descricao = models.TextField()
 
