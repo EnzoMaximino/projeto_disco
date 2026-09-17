@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    {% if form.instance.pk %}
+        Editar Disco
+    {% else %}
+        Novo Disco
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="page-card form-card">
+
+    <div class="page-header">
+
+        {% if form.instance.pk %}
+
+            <h2>Editar disco</h2>
+
+            <p class="page-description">
+                Atualize as informações do anúncio.
+            </p>
+
+        {% else %}
+
+            <h2>Colocar disco à venda</h2>
+
+            <p class="page-description">
+                Preencha as informações do disco.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <div class="actions">
+
+            <button type="submit">
+                Salvar
+            </button>
+
+            <a
+                class="btn btn-secondary"
+                href="{% url 'meu_perfil' %}"
+            >
+                Cancelar
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

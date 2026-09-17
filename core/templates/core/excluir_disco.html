@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Excluir Disco
+{% endblock %}
+
+{% block content %}
+
+<div class="page-card form-card warning-box">
+
+    <div class="page-header">
+
+        <h2>Excluir disco</h2>
+
+        <p class="warning-text">
+            Essa ação não poderá ser desfeita.
+        </p>
+
+    </div>
+
+
+    <p>
+        Tem certeza que deseja excluir
+        <strong>{{ disco.titulo }}</strong>?
+    </p>
+
+    <p>
+        <strong>Artista:</strong>
+        {{ disco.artista }}
+    </p>
+
+    <p>
+        <strong>Preço:</strong>
+        R$ {{ disco.preco }}
+    </p>
+
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <div class="actions">
+
+            <button
+                class="btn-danger"
+                type="submit"
+            >
+                Confirmar exclusão
+            </button>
+
+            <a
+                class="btn btn-secondary"
+                href="{% url 'meu_perfil' %}"
+            >
+                Cancelar
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,267 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Discos
+{% endblock %}
+
+{% block content %}
+
+
+<div class="page-header">
+
+    <h2>Discos disponíveis</h2>
+
+    <p class="page-description">
+        Encontre discos anunciados por outros usuários.
+    </p>
+
+</div>
+
+
+<form method="GET">
+
+    <div class="search-bar">
+
+        <input
+            type="text"
+            name="busca"
+            placeholder="Pesquise por título ou artista..."
+            value="{{ busca|default:'' }}"
+        >
+
+        <button type="submit">
+            Pesquisar
+        </button>
+
+    </div>
+
+
+    <details>
+
+        <summary>
+            ⚙ Filtros
+        </summary>
+
+
+        <div class="filtros">
+
+            <div class="filter-grid">
+
+                <div>
+
+                    <label>
+                        Vendedor
+                    </label>
+
+                    <input
+                        type="text"
+                        name="vendedor"
+                        placeholder="Nome do vendedor"
+                        value="{{ vendedor|default:'' }}"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        Gênero
+                    </label>
+
+                    <input
+                        type="text"
+                        name="genero"
+                        placeholder="Ex: Rock"
+                        value="{{ genero|default:'' }}"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        Preço mínimo
+                    </label>
+
+                    <input
+                        type="number"
+                        name="preco_min"
+                        step="0.01"
+                        value="{{ preco_min|default:'' }}"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        Preço máximo
+                    </label>
+
+                    <input
+                        type="number"
+                        name="preco_max"
+                        step="0.01"
+                        value="{{ preco_max|default:'' }}"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <label class="checkbox-row">
+
+                <input
+                    type="checkbox"
+                    name="disponivel"
+                    value="1"
+                    {% if disponivel == '1' %}checked{% endif %}
+                >
+
+                Somente discos disponíveis
+
+            </label>
+
+
+            <div class="actions">
+
+                <button type="submit">
+                    Aplicar filtros
+                </button>
+
+                <a
+                    class="btn btn-secondary"
+                    href="{% url 'lista_discos' %}"
+                >
+                    Limpar
+                </a>
+
+            </div>
+
+        </div>
+
+    </details>
+
+</form>
+
+
+{% if user.is_authenticated %}
+
+    <div class="actions">
+
+        <a
+            class="btn"
+            href="{% url 'criar_disco' %}"
+        >
+            + Adicionar disco
+        </a>
+
+    </div>
+
+{% endif %}
+
+
+<br>
+
+
+{% if discos %}
+
+    <div class="discos">
+
+        {% for disco in discos %}
+
+            <div class="disco-card">
+
+                <h3>
+
+                    <a href="{% url 'detalhe_disco' disco.id %}">
+                        {{ disco.titulo }}
+                    </a>
+
+                </h3>
+
+
+                <p class="disco-meta">
+                    <strong>Artista:</strong>
+                    {{ disco.artista }}
+                </p>
+
+
+                <p class="disco-meta">
+
+                    <strong>Vendedor:</strong>
+
+                    <a href="{% url 'perfil_usuario' disco.vendedor.username %}">
+                        {{ disco.vendedor.username }}
+                    </a>
+
+                </p>
+
+
+                <p class="preco">
+                    R$ {{ disco.preco }}
+                </p>
+
+
+                {% if disco.disponivel and disco.estoque > 0 %}
+
+                    <p class="disponivel">
+                        ● À venda
+                    </p>
+
+                {% else %}
+
+                    <p class="indisponivel">
+                        ● Indisponível
+                    </p>
+
+                {% endif %}
+
+
+                <div class="card-actions">
+
+                    <a href="{% url 'detalhe_disco' disco.id %}">
+                        Ver detalhes
+                    </a>
+
+
+                    {% if user == disco.vendedor %}
+
+                        <a href="{% url 'editar_disco' disco.id %}">
+                            Editar
+                        </a>
+
+                        <a href="{% url 'excluir_disco' disco.id %}">
+                            Excluir
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <div class="empty-state">
+
+        <h3>Nenhum disco encontrado</h3>
+
+        <p>
+            Tente alterar os filtros da pesquisa.
+        </p>
+
+    </div>
+
+{% endif %}
+
+
+{% endblock %}

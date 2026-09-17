@@ -1,0 +1,91 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Perfil de {{ usuario.username }}
+{% endblock %}
+
+{% block content %}
+
+<div class="page-card">
+
+    <div class="page-header">
+        <h2>{{ usuario.username }}</h2>
+
+        <p class="page-description">
+            Perfil do vendedor
+        </p>
+    </div>
+
+</div>
+
+
+<div class="page-header">
+    <h2>Discos à venda</h2>
+</div>
+
+
+{% if discos %}
+
+    <div class="discos">
+
+        {% for disco in discos %}
+
+            <div class="disco-card">
+
+                <h3>
+                    <a href="{% url 'detalhe_disco' disco.id %}">
+                        {{ disco.titulo }}
+                    </a>
+                </h3>
+
+                <p class="disco-meta">
+                    <strong>Artista:</strong>
+                    {{ disco.artista }}
+                </p>
+
+                <p class="disco-meta">
+                    <strong>Gênero:</strong>
+                    {{ disco.genero }}
+                </p>
+
+                <p class="preco">
+                    R$ {{ disco.preco }}
+                </p>
+
+                <p class="disco-meta">
+                    Estoque: {{ disco.estoque }}
+                </p>
+
+                <p class="disponivel">
+                    ● Disponível
+                </p>
+
+                <div class="card-actions">
+
+                    <a href="{% url 'detalhe_disco' disco.id %}">
+                        Ver detalhes
+                    </a>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <div class="empty-state">
+
+        <h3>Nenhum disco disponível</h3>
+
+        <p>
+            Este vendedor não possui discos à venda no momento.
+        </p>
+
+    </div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Comprar Disco
+{% endblock %}
+
+{% block content %}
+
+<div class="page-card form-card">
+
+    <div class="page-header">
+
+        <h2>Finalizar compra</h2>
+
+        <p class="page-description">
+            Confira as informações antes de confirmar.
+        </p>
+
+    </div>
+
+
+    <div class="purchase-summary">
+
+        <h3>{{ disco.titulo }}</h3>
+
+        <p>
+            <strong>Artista:</strong>
+            {{ disco.artista }}
+        </p>
+
+        <p>
+            <strong>Gênero:</strong>
+            {{ disco.genero }}
+        </p>
+
+        <p>
+            <strong>Estoque disponível:</strong>
+            {{ disco.estoque }}
+        </p>
+
+        <p class="purchase-price">
+            R$ {{ disco.preco }}
+        </p>
+
+    </div>
+
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <label for="forma_pagamento">
+            Forma de pagamento
+        </label>
+
+        <select
+            name="forma_pagamento"
+            id="forma_pagamento"
+            required
+        >
+            <option value="">
+                Selecione uma opção
+            </option>
+
+            <option value="pix">
+                Pix
+            </option>
+
+            <option value="cartao">
+                Cartão
+            </option>
+
+            <option value="boleto">
+                Boleto
+            </option>
+
+        </select>
+
+
+        <div class="actions">
+
+            <button type="submit">
+                Confirmar compra
+            </button>
+
+            <a
+                class="btn btn-secondary"
+                href="{% url 'detalhe_disco' disco.id %}"
+            >
+                Cancelar
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

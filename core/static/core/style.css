@@ -1,0 +1,763 @@
+/* =========================
+   CONFIGURAÇÃO GERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background-color: #f4f1ea;
+    color: #1c1c1c;
+
+    min-height: 100vh;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: min(1100px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+.site-header {
+    background-color: #181818;
+    color: #f4f1ea;
+
+    padding: 22px 0;
+
+    border-bottom: 1px solid #333;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+}
+
+.logo {
+    color: #f4f1ea;
+    text-decoration: none;
+
+    font-size: 28px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+}
+
+nav a,
+.nav-button {
+    color: #d7d4cd;
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    background: none;
+    border: none;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    transition: color 0.2s;
+}
+
+nav a:hover,
+.nav-button:hover {
+    color: white;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+
+/* =========================
+   CONTEÚDO PRINCIPAL
+========================= */
+
+main {
+    min-height: calc(100vh - 190px);
+
+    padding-top: 45px;
+    padding-bottom: 60px;
+}
+
+h1,
+h2,
+h3 {
+    color: #181818;
+}
+
+h2 {
+    font-size: 30px;
+    margin-top: 0;
+    margin-bottom: 28px;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+main a {
+    color: #292929;
+    font-weight: 600;
+    text-decoration: underline;
+
+    text-decoration-color: #aaa;
+    text-underline-offset: 3px;
+}
+
+main a:hover {
+    color: #000;
+    text-decoration-color: #000;
+}
+
+
+/* =========================
+   FORMULÁRIOS
+========================= */
+
+form p {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: 600;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    max-width: 520px;
+
+    padding: 11px 13px;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    color: #181818;
+    background-color: #fffefa;
+
+    border: 1px solid #bbb8b0;
+    border-radius: 7px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #333;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+input[type="checkbox"] {
+    width: auto;
+}
+
+textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+button,
+input[type="submit"],
+.btn {
+    display: inline-block;
+
+    width: auto;
+
+    padding: 11px 18px;
+
+    border: none;
+    border-radius: 7px;
+
+    background-color: #1c1c1c;
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s,
+        transform 0.1s;
+}
+
+button:hover,
+input[type="submit"]:hover,
+.btn:hover {
+    background-color: #383838;
+}
+
+button:active,
+input[type="submit"]:active,
+.btn:active {
+    transform: translateY(1px);
+}
+
+
+/* =========================
+   PESQUISA
+========================= */
+
+.search-bar {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 16px;
+}
+
+.search-bar input {
+    flex: 1;
+    max-width: none;
+}
+
+
+/* =========================
+   FILTROS
+========================= */
+
+details {
+    background-color: #fffefa;
+
+    border: 1px solid #dedbd3;
+    border-radius: 10px;
+
+    padding: 16px 20px;
+
+    margin-bottom: 28px;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.filtros {
+    margin-top: 20px;
+}
+
+
+/* =========================
+   LISTA DE DISCOS
+========================= */
+
+.discos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 22px;
+
+    padding: 0;
+
+    list-style: none;
+}
+
+.disco-card {
+    background-color: #fffefa;
+
+    padding: 22px;
+
+    border: 1px solid #dedbd3;
+    border-radius: 12px;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.disco-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 7px 20px rgba(0, 0, 0, 0.09);
+}
+
+.disco-card h3 {
+    margin-top: 0;
+    margin-bottom: 14px;
+
+    font-size: 21px;
+}
+
+.disco-card h3 a {
+    color: #181818;
+
+    text-decoration: none;
+}
+
+.disco-card h3 a:hover {
+    text-decoration: underline;
+}
+
+.preco {
+    font-size: 20px;
+    font-weight: 700;
+
+    margin: 15px 0;
+}
+
+.disponivel {
+    color: #24733c;
+    font-weight: 600;
+}
+
+.indisponivel {
+    color: #9c2929;
+    font-weight: 600;
+}
+
+
+/* =========================
+   LINHAS
+========================= */
+
+hr {
+    border: none;
+    border-top: 1px solid #d6d2ca;
+
+    margin: 25px 0;
+}
+
+
+/* =========================
+   MENSAGEM / TOAST
+========================= */
+
+.messages-container {
+    position: fixed;
+
+    top: 25px;
+    right: 25px;
+
+    z-index: 9999;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 280px;
+
+    padding: 16px 20px;
+
+    background-color: #1c1c1c;
+    color: #fff;
+
+    border-radius: 9px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.25);
+
+    transition:
+        opacity 0.3s,
+        transform 0.3s;
+}
+
+.toast span {
+    color: #70c584;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.toast-hide {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+footer {
+    padding: 25px 0;
+
+    color: #77736c;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    border-top: 1px solid #d6d2ca;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 750px) {
+
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+
+}
+/* =========================
+   COMPONENTES DAS PÁGINAS
+========================= */
+
+.page-card {
+    background-color: #fffefa;
+    border: 1px solid #dedbd3;
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+    margin-bottom: 24px;
+}
+
+.page-header {
+    margin-bottom: 28px;
+}
+
+.page-header h2 {
+    margin-bottom: 8px;
+}
+
+.page-description {
+    color: #69665f;
+    margin: 0;
+    font-size: 15px;
+}
+
+.form-card {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.auth-card {
+    max-width: 520px;
+    margin: 20px auto;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #252525 !important;
+    border: 1px solid #aaa69e;
+    text-decoration: none !important;
+}
+
+.btn-secondary:hover {
+    background-color: #ebe8e1;
+}
+
+.btn-danger {
+    background-color: #932f2f;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.btn-danger:hover {
+    background-color: #772525;
+}
+
+
+/* PERFIL */
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.profile-name {
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.profile-email {
+    color: #69665f;
+    margin: 0;
+}
+
+
+/* DETALHE DO DISCO */
+
+.detail-title {
+    font-size: 34px;
+    margin-bottom: 25px;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 35px;
+    margin-bottom: 25px;
+}
+
+.detail-item {
+    margin: 0;
+}
+
+.detail-item span {
+    display: block;
+    color: #77736c;
+    font-size: 13px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.detail-item strong {
+    font-size: 17px;
+}
+
+.detail-description {
+    background-color: #f4f1ea;
+    padding: 18px;
+    border-radius: 9px;
+    margin-top: 20px;
+}
+
+.seller-box {
+    background-color: #f4f1ea;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+
+/* COMPRA */
+
+.purchase-summary {
+    background-color: #f4f1ea;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.purchase-summary h3 {
+    margin-bottom: 16px;
+}
+
+.purchase-price {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+
+/* EXCLUSÃO */
+
+.warning-box {
+    border-left: 5px solid #932f2f;
+}
+
+.warning-text {
+    color: #6f2727;
+}
+
+
+/* LOGIN / ERROS */
+
+.error-message {
+    background-color: #f7e5e5;
+    color: #812c2c;
+    border: 1px solid #dfbaba;
+    border-radius: 7px;
+    padding: 12px 15px;
+}
+
+
+/* PÁGINA INICIAL */
+
+.hero {
+    padding: 60px 45px;
+    background-color: #1c1c1c;
+    color: #f4f1ea;
+    border-radius: 16px;
+    margin-bottom: 28px;
+}
+
+.hero h2 {
+    color: white;
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #cbc8c1;
+    font-size: 18px;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.hero .btn {
+    margin-top: 12px;
+    background-color: #f4f1ea;
+    color: #181818;
+}
+
+.hero .btn:hover {
+    background-color: white;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.home-item {
+    background-color: #fffefa;
+    border: 1px solid #dedbd3;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+
+/* FILTROS */
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 20px;
+    margin-top: 18px;
+}
+
+.filter-grid input {
+    max-width: none;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.checkbox-row input {
+    margin: 0;
+}
+
+
+/* CARDS DOS DISCOS */
+
+.disco-meta {
+    color: #66625c;
+    margin: 7px 0;
+}
+
+.card-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #ebe8e1;
+}
+
+.empty-state {
+    background-color: #fffefa;
+    border: 1px dashed #c9c5bd;
+    border-radius: 12px;
+    text-align: center;
+    padding: 45px 20px;
+    color: #66625c;
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 700px) {
+    .detail-grid,
+    .filter-grid,
+    .home-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 35px 25px;
+    }
+
+    .hero h2 {
+        font-size: 32px;
+    }
+
+    .page-card {
+        padding: 22px;
+    }
+}

@@ -1,0 +1,118 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+{{ disco.titulo }}
+{% endblock %}
+
+{% block content %}
+
+<div class="page-card">
+
+    <div class="page-header">
+        <h2 class="detail-title">{{ disco.titulo }}</h2>
+        <p class="page-description">
+            Informações do disco
+        </p>
+    </div>
+
+    <div class="detail-grid">
+
+        <p class="detail-item">
+            <span>Artista</span>
+            <strong>{{ disco.artista }}</strong>
+        </p>
+
+        <p class="detail-item">
+            <span>Gênero</span>
+            <strong>{{ disco.genero }}</strong>
+        </p>
+
+        <p class="detail-item">
+            <span>Preço</span>
+            <strong>R$ {{ disco.preco }}</strong>
+        </p>
+
+        <p class="detail-item">
+            <span>Estoque</span>
+            <strong>{{ disco.estoque }}</strong>
+        </p>
+
+    </div>
+
+    <div class="detail-description">
+        <strong>Descrição</strong>
+        <p>{{ disco.descricao }}</p>
+    </div>
+
+    <div class="seller-box">
+
+        <h3>Vendedor</h3>
+
+        <p>
+            Vendido por
+            <a href="{% url 'perfil_usuario' disco.vendedor.username %}">
+                {{ disco.vendedor.username }}
+            </a>
+        </p>
+
+        {% if disco.disponivel and disco.estoque > 0 %}
+
+            <p class="disponivel">
+                ● Disponível para venda
+            </p>
+
+            {% if user.is_authenticated and user != disco.vendedor %}
+
+                <div class="actions">
+                    <a
+                        class="btn"
+                        href="{% url 'comprar_disco' disco.id %}"
+                    >
+                        Comprar disco
+                    </a>
+                </div>
+
+            {% endif %}
+
+        {% else %}
+
+            <p class="indisponivel">
+                ● Indisponível
+            </p>
+
+        {% endif %}
+
+    </div>
+
+    <div class="actions">
+
+        {% if user == disco.vendedor %}
+
+            <a
+                class="btn"
+                href="{% url 'editar_disco' disco.id %}"
+            >
+                Editar disco
+            </a>
+
+            <a
+                class="btn btn-danger"
+                href="{% url 'excluir_disco' disco.id %}"
+            >
+                Excluir
+            </a>
+
+        {% endif %}
+
+        <a
+            class="btn btn-secondary"
+            href="{% url 'lista_discos' %}"
+        >
+            ← Voltar
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

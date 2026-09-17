@@ -1,0 +1,140 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Meu Perfil
+{% endblock %}
+
+{% block content %}
+
+<div class="page-card">
+
+    <div class="profile-header">
+
+        <div>
+            <h2>Meu Perfil</h2>
+
+            <h3 class="profile-name">
+                {{ usuario.username }}
+            </h3>
+
+            <p class="profile-email">
+                {{ usuario.email }}
+            </p>
+        </div>
+
+        <a
+            class="btn btn-secondary"
+            href="{% url 'perfil_usuario' usuario.username %}"
+        >
+            Ver perfil público
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="page-header">
+
+    <h2>Meus discos</h2>
+
+    <a
+        class="btn"
+        href="{% url 'criar_disco' %}"
+    >
+        + Adicionar disco
+    </a>
+
+</div>
+
+
+{% if discos %}
+
+    <div class="discos">
+
+        {% for disco in discos %}
+
+            <div class="disco-card">
+
+                <h3>
+                    <a href="{% url 'detalhe_disco' disco.id %}">
+                        {{ disco.titulo }}
+                    </a>
+                </h3>
+
+                <p class="disco-meta">
+                    <strong>Artista:</strong>
+                    {{ disco.artista }}
+                </p>
+
+                <p class="disco-meta">
+                    <strong>Gênero:</strong>
+                    {{ disco.genero }}
+                </p>
+
+                <p class="preco">
+                    R$ {{ disco.preco }}
+                </p>
+
+                <p class="disco-meta">
+                    Estoque: {{ disco.estoque }}
+                </p>
+
+                {% if disco.disponivel and disco.estoque > 0 %}
+
+                    <p class="disponivel">
+                        ● À venda
+                    </p>
+
+                {% else %}
+
+                    <p class="indisponivel">
+                        ● Indisponível
+                    </p>
+
+                {% endif %}
+
+                <div class="card-actions">
+
+                    <a href="{% url 'detalhe_disco' disco.id %}">
+                        Detalhes
+                    </a>
+
+                    <a href="{% url 'editar_disco' disco.id %}">
+                        Editar
+                    </a>
+
+                    <a href="{% url 'excluir_disco' disco.id %}">
+                        Excluir
+                    </a>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <div class="empty-state">
+
+        <h3>Nenhum disco anunciado</h3>
+
+        <p>
+            Você ainda não colocou nenhum disco à venda.
+        </p>
+
+        <a
+            class="btn"
+            href="{% url 'criar_disco' %}"
+        >
+            Colocar meu primeiro disco à venda
+        </a>
+
+    </div>
+
+{% endif %}
+
+{% endblock %}

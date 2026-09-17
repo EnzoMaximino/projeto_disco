@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Entrar
+{% endblock %}
+
+{% block content %}
+
+<div class="page-card auth-card">
+
+    <div class="page-header">
+
+        <h2>Entrar</h2>
+
+        <p class="page-description">
+            Acesse sua conta para comprar ou vender discos.
+        </p>
+
+    </div>
+
+
+    {% if erro %}
+
+        <p class="error-message">
+            {{ erro }}
+        </p>
+
+    {% endif %}
+
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <p>
+            <label for="username">
+                Usuário
+            </label>
+
+            <input
+                id="username"
+                type="text"
+                name="username"
+                required
+            >
+        </p>
+
+
+        <p>
+            <label for="password">
+                Senha
+            </label>
+
+            <input
+                id="password"
+                type="password"
+                name="password"
+                required
+            >
+        </p>
+
+
+        <button type="submit">
+            Entrar
+        </button>
+
+    </form>
+
+
+    <hr>
+
+
+    <p>
+        Ainda não possui uma conta?
+
+        <a href="{% url 'cadastro' %}">
+            Cadastre-se
+        </a>
+    </p>
+
+</div>
+
+{% endblock %}

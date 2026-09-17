@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Cadastro
+{% endblock %}
+
+{% block content %}
+
+<div class="page-card auth-card">
+
+    <div class="page-header">
+
+        <h2>Criar conta</h2>
+
+        <p class="page-description">
+            Cadastre-se para comprar e anunciar discos.
+        </p>
+
+    </div>
+
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Criar conta
+        </button>
+
+    </form>
+
+
+    <hr>
+
+
+    <p>
+        Já possui uma conta?
+
+        <a href="{% url 'login' %}">
+            Entrar
+        </a>
+    </p>
+
+</div>
+
+{% endblock %}

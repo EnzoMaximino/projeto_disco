@@ -1,0 +1,69 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Início
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <h2>
+        Encontre seu próximo disco.
+    </h2>
+
+    <p>
+        Uma plataforma simples para comprar, vender e
+        descobrir discos anunciados por outros usuários.
+    </p>
+
+    <a
+        class="btn"
+        href="{% url 'lista_discos' %}"
+    >
+        Explorar discos
+    </a>
+
+</section>
+
+
+<div class="home-grid">
+
+    <div class="home-item">
+
+        <h3>💿 Encontre discos</h3>
+
+        <p>
+            Pesquise por título, artista, gênero,
+            vendedor ou faixa de preço.
+        </p>
+
+    </div>
+
+
+    <div class="home-item">
+
+        <h3>🏷️ Venda seus discos</h3>
+
+        <p>
+            Crie anúncios e controle preço,
+            estoque e disponibilidade.
+        </p>
+
+    </div>
+
+
+    <div class="home-item">
+
+        <h3>👤 Perfis de vendedores</h3>
+
+        <p>
+            Consulte os discos disponíveis
+            de cada vendedor.
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}
