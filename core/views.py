@@ -38,12 +38,28 @@ def lista_discos(request):
 
     # Preço mínimo
     preco_min = request.GET.get('preco_min')
-    if preco_min:
-        discos = discos.filter(preco__gte=preco_min)
-
+    
     # Preço máximo
     preco_max = request.GET.get('preco_max')
-    if preco_max:
+    
+    # Converte para float/Decimal se ambos existirem
+    if preco_min and preco_max:
+        try:
+            preco_min = float(preco_min)
+            preco_max = float(preco_max)
+    
+            # Só aplica se mínimo <= máximo
+            if preco_min <= preco_max:
+                discos = discos.filter(preco__gte=preco_min, preco__lte=preco_max)
+            else:
+                # Caso inválido
+                messages.error(request, "O preço mínimo não pode ser maior que o preço máximo.")
+                discos = discos.filter(preco__gte=preco_min)
+        except ValueError:
+            pass
+    elif preco_min:
+        discos = discos.filter(preco__gte=preco_min)
+    elif preco_max:
         discos = discos.filter(preco__lte=preco_max)
 
     # Somente disponíveis
