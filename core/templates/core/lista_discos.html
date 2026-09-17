@@ -90,6 +90,7 @@ Discos
                         name="preco_min"
                         step="0.01"
                         value="{{ preco_min|default:'' }}"
+                        min="0.01"
                     >
 
                 </div>
@@ -106,6 +107,7 @@ Discos
                         name="preco_max"
                         step="0.01"
                         value="{{ preco_max|default:'' }}"
+                        min="0.01"
                     >
 
                 </div>
@@ -148,6 +150,13 @@ Discos
 
 </form>
 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 {% if user.is_authenticated %}
 
